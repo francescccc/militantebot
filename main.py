@@ -49,7 +49,7 @@ def reply():
             ' nossa quanta radiação, ta parecendo chernobyl',
             ' kkkkkkkkkkk passou vergonha',
             ' nossa, que ridiculo, não ter vergonha de ser tão machista?',
-            ' essa vergonha eu não passo',~
+            ' essa vergonha eu não passo',
             ' como você tem coragem de falar uma coisa dessas????? a vergonha meu pai',
             ' amigo, algumas pessoas podem ficar muito desconfortaveis lendo isso, por favor apaga',
             ' generalizando os outros assim, a vergonha meu pai',
