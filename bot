@@ -1,0 +1,10 @@
+consumer_key = '1353790874463956999-4D5xxVhyleqXzmXzt0Cy2q1zQyBTvk'
+consumer_secret = 'uWmxPKYDPaOCXvuGwruCffLaqNbwrthDLcZCMNWcGkd6l'
+
+key = 'FPWi4wYbTAHLwux8ll1r9vxtZ'
+secret = 'bBIcQ4FFVoUi0xnbp7TAtrorwtRD6Pt50lvcSQiObdVSQ05wiX'
+
+api = tweepy.API(auth)
+api.update_status('twitter bot reporting in live')
+
+tweets = api.mentions_timeline()
