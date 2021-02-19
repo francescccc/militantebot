@@ -84,11 +84,11 @@ def reply():
             print(copypastas)
             numberident = (random.choice(number))
             print(numberident)
-            imagepath = (numberident + ("gret.jpg "))
+            imagepath = (numberident + ("gret.jpg"))
             print(imagepath)
             print(str(tweet.id) + ' - ' + tweet.full_text)
             store_last_seen(FILE_NAME, tweet.id)
-            api.update_with_media(imagepath, "@" + tweet.user.screen_name + f'{copypastas}', in_reply_to_status_id = tweet.id)
+            api.update_with_media(imagepath, " @" + tweet.user.screen_name + f'{copypastas}', in_reply_to_status_id = tweet.id)
 
 while True:
             reply()
