@@ -6,4 +6,5 @@ urllib3
 pillow
 numpy
 pyrebase4
+requests
 
