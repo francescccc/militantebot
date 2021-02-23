@@ -3,6 +3,7 @@ from tweepy import OAuthHandler
 import json
 import urllib.request
 from PIL import Image, ImageOps
+from cv2 import cv2
 import numpy as np
 import pyrebase
 
