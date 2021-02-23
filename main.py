@@ -35,9 +35,26 @@ auth.set_access_token(key, secret)
 api = tweepy.API(auth)
 
 
+
 users = db.child("id").get()
 users1 = users.val()
 print(users1)
+
+
+
+users = db.child("id").get()
+users1 = users.val()
+print(users1)
+
+
+
+
+
+
+
+
+
+
 
 
 def reply():
