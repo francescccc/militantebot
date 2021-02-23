@@ -1,1 +1,7 @@
 tweepy
+mysql-connector
+pyrebase4
+opencv-python
+urllib3
+pillow
+numpy

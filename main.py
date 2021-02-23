@@ -1,6 +1,25 @@
 # -*- coding: utf-8 -*-
 import tweepy
 import random
+import pyrebase
+
+config = {
+    "apiKey": "AIzaSyD1s2TKUXZcUVTpOtqfqTQm8AAbV2R7HdE",
+    "authDomain": "tweet-bb608.firebaseapp.com",
+    "projectId": "tweet-bb608",
+    "storageBucket": "tweet-bb608.appspot.com",
+    "messagingSenderId": "271208042340",
+    "appId": "1:271208042340:web:f89694e1c054976c5bf471",
+    "measurementId": "G-PF3FJ5R1NE",
+    "databaseURL": "https://tweet-bb608-default-rtdb.firebaseio.com",
+    "serviceAccount": "serviceAccountCredentials.json",
+}
+
+
+firebase = pyrebase.initialize_app(config)
+db = firebase.database()
+
+
 
 
 consumer_key = 'FPWi4wYbTAHLwux8ll1r9vxtZ'
@@ -16,30 +35,17 @@ auth.set_access_token(key, secret)
 api = tweepy.API(auth)
 
 
-
-
-
-
-FILE_NAME = 'last_seen.txt'
-
-def read_last_seen(FILE_NAME):
-    file_read = open(FILE_NAME, 'r')
-    last_seen_id = int(file_read.read().strip())
-    file_read.close()
-    return last_seen_id
-
-def store_last_seen(FILE_NAME, last_seen_id):
-    file_write = open(FILE_NAME, 'w')
-    file_write.write(str(last_seen_id))
-    file_write.close()
-    return 
-
-
-
+users = db.child("id").get()
+users1 = users.val()
+print(users1)
 
 
 def reply():
-    tweets = api.mentions_timeline(read_last_seen(FILE_NAME), tweet_mode='extended')
+    users3 = db.child("id").get()
+    print(users3.val())
+    global users1
+    tweets = api.mentions_timeline(users1, tweet_mode='extended')
+    print(users1, "uweo")
     for tweet in reversed(tweets):
         if '@militantebot_' in tweet.full_text.lower():
             copypasta = (' Amigo, isso não tem graça, vc ta tendo uma atitude extremamente machista, não que eu esperasse diferente de um macho branco elitista',
@@ -87,10 +93,15 @@ def reply():
             imagepath = (numberident + ("gret.jpg"))
             print(imagepath)
             print(str(tweet.id) + ' - ' + tweet.full_text)
-            store_last_seen(FILE_NAME, tweet.id)
+            tweetsid = tweet.id
+            print(tweetsid, "esse") 
+            data = {"id":tweet.id}
+            users = db.update(data)
+            users = db.child("id").get()
+            users1 = users.val()
+            print(users1)
             api.update_with_media(imagepath, " @" + tweet.user.screen_name + f'{copypastas}', in_reply_to_status_id = tweet.id)
-
 while True:
             reply()
             import time
-            time.sleep(15)
+            time.sleep(15)            
