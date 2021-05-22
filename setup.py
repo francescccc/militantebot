@@ -17,6 +17,5 @@ firebase = pyrebase.initialize_app(config)
 db = firebase.database()
 
 
-
-data = {"id1":"1364622339074359308"}
+data = {"id2":"1396200142508810243"}
 users = db.update(data)

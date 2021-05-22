@@ -1,0 +1,83 @@
+# -*- coding: utf-8 -*-
+import tweepy
+import random
+from PIL import Image, ImageDraw, ImageFont
+import textwrap
+
+
+
+
+
+consumer_key = '2jXREqqrVS3wUyXqXJ3WLi0oo'
+consumer_secret = 'c9z41ADMyAixWVgb2wWzryBnr9x8tjkW5AbKG1LQuRmpbTw8C3'
+
+key = '1354759515363811328-v31fRhBAUTIGJYbOWCRyfVWF5xYAeh'
+secret = 'J3IOMXZLXAWda5RkKoOTuAA2Yv0ya5qgua66dAhnH6Qep'
+
+
+auth = tweepy.OAuthHandler(consumer_key, consumer_secret)
+auth.set_access_token(key, secret)
+
+api = tweepy.API(auth)
+
+
+imagepath = "bolso.jpg"
+
+
+FILE_NAME = 'last_seen.txt'
+
+def read_last_seen(FILE_NAME):
+    file_read = open(FILE_NAME, 'r')
+    last_seen_id = int(file_read.read().strip())
+    file_read.close()
+    return last_seen_id
+
+def store_last_seen(FILE_NAME, last_seen_id):
+    file_write = open(FILE_NAME, 'w')
+    file_write.write(str(last_seen_id))
+    file_write.close()
+    return
+
+
+
+
+def reply():
+    tweets = api.mentions_timeline(read_last_seen(FILE_NAME), tweet_mode='extended')
+    for tweet in reversed(tweets):
+        if '@bolsobot_' in tweet.full_text.lower():
+            image1 = Image.open('bolsonaro1.jpg')
+            draw = ImageDraw.Draw(image1)
+            font = ImageFont.truetype('arial.ttf', size=40)
+            message = (tweet.full_text.replace('@bolsobot_', ''))
+            textwrapped1 = textwrap.wrap(message, width=20)
+            textcolor = '#000000'
+            draw.multiline_text((600, 160),'\n'.join(textwrapped1), font=font, fill="#000000")
+            image1.save('1bolso.jpg')
+
+            image = Image.open('bolsonaro.jpg')
+            draw = ImageDraw.Draw(image)
+            font = ImageFont.truetype('arial.ttf', size=56)
+            textwrapped = textwrap.wrap(message, width=17)
+            draw.multiline_text((480, 158),'\n'.join(textwrapped), font=font, fill="#000000")
+            image.save('2bolso.jpg')
+
+            image2 = Image.open('bolsonaro3.jpg')
+            draw = ImageDraw.Draw(image2)
+            font = ImageFont.truetype('arial.ttf', size=40)
+            textwrapped1 = textwrap.wrap(message, width=20)
+            draw.multiline_text((240, 140),'\n'.join(textwrapped1), font=font, fill="#000000")
+            image2.save('3bolso.jpg')
+            number = ('1',
+            '2',
+            '3',
+            )
+            numberident = (random.choice(number))
+            imagepath = (numberident + ("bolso.jpg"))
+            print(str(tweet.id) + ' - ' + tweet.full_text)
+            store_last_seen(FILE_NAME, tweet.id)
+            api.update_with_media(imagepath, " @" + tweet.user.screen_name + " Aqui \U0001F44D", in_reply_to_status_id = tweet.id)
+
+while True:
+            reply()
+            import time
+            time.sleep(15)
