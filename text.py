@@ -88,4 +88,4 @@ def tweetsend2():
 while True:
             tweetsend2()
             import time
-            time.sleep(14)
+            time.sleep(70)
