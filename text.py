@@ -17,7 +17,7 @@ def tweetsend2():
     first_line1 = api.get_user(first_line)
     ID = first_line1.id_str
     recipient_id = ID
-    text = "Oii, desculpa o incomodo, eu só queria pedir, pra que se caso você pudesse me ajudar, eu to passando por umas situações financeiras em casa muito difíceis mesmo, e eu não me sinto confortavel pedindo doação, pq eu sei que tem gente que precisa bem mais que eu, ent o unico jeito que eu achei foi o kwai, se você puder usar meu código ou pedir pra alguém usar, ia me ajudar muito, de vdd, só se não for um incômodo pra você. Meu código é Kwai646639844 , é bem facil de fazer, é só criar uma conta, clicar na moedinha e colocar o código. Obrigada!!"
+    text = "Oii, desculpa o incomodo, eu só queria pedir, pra que se caso você pudesse me ajudar, eu to passando por umas situações financeiras em casa muito difíceis mesmo, e eu não me sinto confortavel pedindo doação, pq eu sei que tem gente que precisa bem mais que eu, ent o unico jeito que eu achei foi o kwai, se você puder usar meu código ou pedir pra alguém usar, ia me ajudar muito, de vdd, só se não for um incômodo pra você. Meu código é Kwai646439844 , é bem facil de fazer, é só criar uma conta, clicar na moedinha e colocar o código. Obrigada!!"
     try:
         import random
         numvers = ["3",
